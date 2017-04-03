@@ -27,7 +27,7 @@ public class TestCameraMovement : MonoBehaviour
 
     private Camera _camera;
 
-    private bool zoomLock;
+    private bool zoomLockIn,zoomLockOut;
 
     void Start()
     {
@@ -40,7 +40,8 @@ public class TestCameraMovement : MonoBehaviour
         CurrentCamSpeed = OrigCameraSpeed;
         OrigDistance = 1.0f;
         CameraDistance = OrigDistance;
-        zoomLock = true;
+		zoomLockIn = true;
+		zoomLockOut = true;
 
 
     }
@@ -132,9 +133,9 @@ public class TestCameraMovement : MonoBehaviour
     {	
         
         //ZoomIn..
-		if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxis("XB1_Zoom") > 0.0f)
+		if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxis("XB1_Zoom") > 0.1f)
         {
-            if (zoomLock)
+			if (zoomLockIn)
             {
                 if (CameraDistance == OrigDistance)
                 {
@@ -144,13 +145,19 @@ public class TestCameraMovement : MonoBehaviour
                 {
                     CameraDistance = OrigDistance;
                 }
-                zoomLock = false;
+				zoomLockIn = false;
             }
         }
+		else
+		{
+			if (Input.GetAxis("XB1_Zoom") <= 0.1f){
+				zoomLockIn = true;
+			}
+		}
         //Zoom Out...
-        else if (Input.GetKeyDown(KeyCode.K) || Input.GetAxis("XB1_Zoom") < 0.0f)
+        if (Input.GetKeyDown(KeyCode.K) || Input.GetAxis("XB1_ZoomOut") > 0.1f)
         {
-            if (zoomLock)
+			if (zoomLockOut)
             {
                 if (CameraDistance == OrigDistance)
                 {
@@ -160,12 +167,14 @@ public class TestCameraMovement : MonoBehaviour
                 {
                     CameraDistance = OrigDistance;
                 }
-                zoomLock = false;
+				zoomLockOut = false;
             }
         }
         else
         {
-            zoomLock = true;
+			if (Input.GetAxis("XB1_ZoomOut") <= 0.1f){
+				zoomLockOut = true;
+			}
         }
 		
     }
