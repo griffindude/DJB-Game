@@ -23,7 +23,7 @@ public class PlayerLavaDeath : MonoBehaviour {
 
     public bool PlayerWinState;
 
-
+	public PlayerMovement_Ver2 playerMovementVer2;
 
 	public int Deaths;
 
@@ -198,6 +198,8 @@ public class PlayerLavaDeath : MonoBehaviour {
         //assignes to main camera script the new player, _p
         //Debug.Log ("Camera re-assigned");
 
+		playerMovementVer2.IsGround_2 = false;
+
         //for each player, assign new player
 
 		GameObject[] listOfNPCs = GameObject.FindGameObjectsWithTag ("NPC_charge");
@@ -212,10 +214,12 @@ public class PlayerLavaDeath : MonoBehaviour {
 	void ResetCollectables(){
 		for (int x = 0; x < coins.Length; x++){
 			coins[x].GetComponent<MeshRenderer>().enabled = true;
-		}
+            coins[x].GetComponent<Collider>().enabled = true;
+        }
 		for (int y = 0; y < hearts.Length; y++){
 			hearts[y].GetComponent<MeshRenderer>().enabled = true;
-		}
+            hearts[y].GetComponent<Collider>().enabled = true;
+        }
 	}
 
 

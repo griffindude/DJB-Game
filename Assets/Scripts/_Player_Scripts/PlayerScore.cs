@@ -7,6 +7,7 @@ public class PlayerScore : MonoBehaviour {
 	public int score;
 	Text scoreText;
 	public GameObject[] coins;
+	public PlayerHealth playerHealth;
 
 	// Use this for initialization
 	void Start () {
@@ -25,18 +26,23 @@ public class PlayerScore : MonoBehaviour {
 	void ScoreUpdate () {
 		score++;
 		scoreText.text = "Score: " + score;
-
+		if(score == 100)
+		{
+			playerHealth.Lives++;
+		}
 	}
 
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Coin" && other.gameObject.GetComponent<MeshRenderer>().enabled == true) {
 			ScoreUpdate ();
 			other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            other.gameObject.GetComponent<Collider>().enabled = false;
 		}
 
         if (other.tag == "HeartHP" && other.gameObject.GetComponent<MeshRenderer>().enabled == true)
         {
 			other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            other.gameObject.GetComponent<Collider>().enabled = false;
         }
 
         if (other.tag == "GoalCollectable") {

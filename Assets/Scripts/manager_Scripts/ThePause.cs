@@ -8,6 +8,7 @@ public class ThePause : MonoBehaviour {
     PlayerMovement_Ver2 PlayerMove;
 
     public GameObject PauseCanvas;
+	public GameObject OptionsCanvas;
     public bool Paused;
 
     // Use this for initialization
@@ -17,6 +18,11 @@ public class ThePause : MonoBehaviour {
         MechAnim  = ThePlayer.transform.GetChild(1).GetComponent<BrutusMechanimInputs>();
 
         PauseCanvas = GameObject.Find("PauseCanvas");
+		OptionsCanvas = GameObject.Find ("OptionsCanvas");
+        if (OptionsCanvas != null)
+        {
+            OptionsCanvas.SetActive(false);
+        }
 
     }
 
@@ -34,7 +40,11 @@ public class ThePause : MonoBehaviour {
 
         if (PauseCanvas.activeSelf)
         {
+<<<<<<< HEAD
             if (Input.GetKeyDown("joystick button 5"))
+=======
+            if (Input.GetKeyDown("joystick button 4"))
+>>>>>>> 1b8f1f7d1bdbd7f78615d195fc45eb5444427f43
             {
                 Paused = false;
             }
@@ -75,4 +85,15 @@ public class ThePause : MonoBehaviour {
             }
         }
     }
+
+	public void options() {
+		OptionsCanvas.SetActive (true);
+		Time.timeScale = 0.0f;
+		Paused = false;
+	}
+
+	public void unOptions() {
+		OptionsCanvas.SetActive (false);
+		Paused = true;
+	}
 }
