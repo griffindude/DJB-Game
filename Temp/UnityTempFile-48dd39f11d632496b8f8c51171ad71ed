@@ -78,7 +78,6 @@
 'Assets/Brutus State Machine/BrutusMechanimInputs.cs'
 'Assets/Scripts/CameraScripts/CameraScript.cs'
 'Assets/Scripts/CameraScripts/InRoomScript.cs'
-'Assets/Scripts/CameraScripts/TestCameraMovement.cs'
 'Assets/Scripts/Canvas_Scripts/HeartContainer_Script.cs'
 'Assets/Scripts/Canvas_Scripts/PressSpaceToContinue.cs'
 'Assets/Scripts/CollisionTestScript.cs'
